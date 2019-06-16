@@ -11,7 +11,7 @@ T_CFLAGS := --coverage -g -Wall -O3
 INC := -I include -I third-party
 
 
-MODULES = arvore
+MODULES = arvore decodificador
 SOURCES = $(addsuffix .cpp,$(MODULES))
 OBJECTS = $(patsubst %.cpp, %.o, $(SOURCES))
 TESTS = $(addprefix test_,$(SOURCES))
@@ -51,9 +51,9 @@ $(TESTS): tests/test_%.o : tests/test_%.cpp
 
 comp: $(TGTDIR)
 	$(CC) $(INC) $(CFLAGS) $(OBJDIR) program/$(TARGET).cpp -o $(TGTDIR)
-	#@bin/main.exe
-	#$(RM) main.gcno
-	#$(RM) main.gcda
+	@bin/main.exe
+	$(RM) main.gcno
+	$(RM) main.gcda
 
 run:
 	@bin/main.exe

@@ -35,7 +35,7 @@ Trie::~Trie(){
     }
 }
 
-void Trie::Insere(char registro, std::string chave){
+void Trie::Insere(std::string registro, std::string chave){
     node_t* atual = raiz;
     for (int i = 0; i < (int)chave.length(); i++){
         int idx = abs(chave[i] - CHAR_INICIAL);
@@ -66,7 +66,7 @@ void Trie::Imprime(){
 
 /* Retorna True se encontrar a chave 'chave', False do contrário;
    Coloca o caractere equivalente à chave 'chave' encontrada em 'result'*/
-bool Trie::Pesquisa(char& result, std::string chave){
+bool Trie::Pesquisa(std::string& result, std::string chave){
     node_t* atual = raiz;
     for (int i = 0; i < (int)chave.length(); i++){
         int idx = abs(chave[i] - CHAR_INICIAL);

@@ -19,11 +19,11 @@ TEST_CASE("node_t: acesso"){
     
     node.filhos[0] = node1;
     node.filhos[1] = node2;
-    node.symbol = '.';
+    node.symbol = ".";
 
     CHECK(node.filhos[0] == node1);
     CHECK(node.filhos[1] == node2);
-    CHECK(node.symbol == '.');
+    CHECK(node.symbol == ".");
     
     CHECK(node1->filhos[0] == nullptr);
     CHECK(node1->filhos[1] == nullptr);
@@ -31,7 +31,7 @@ TEST_CASE("node_t: acesso"){
     node_t* node4 = new node_t(node);
     CHECK(node4->filhos[0] == node1);
     CHECK(node4->filhos[1] == node2);
-    CHECK(node4->symbol == '.');
+    CHECK(node4->symbol == ".");
 }
 
 TEST_CASE("Trie: construtores"){
@@ -42,12 +42,12 @@ TEST_CASE("Trie: construtores"){
 
 TEST_CASE("Trie: insere e imprime"){
     Trie T;
-    T.Insere('D',"-");
-    T.Insere('E',".");
-    T.Insere('F',".-");
-    T.Insere('G',"--");
-    T.Insere('U',"..");
-    T.Insere('M',"-.");
+    T.Insere("D","-");
+    T.Insere("E",".");
+    T.Insere("F",".-");
+    T.Insere("G","--");
+    T.Insere("U","..");
+    T.Insere("M","-.");
 
     std::stringstream ss;
     //change the underlying buffer and save the old buffer
@@ -61,26 +61,26 @@ TEST_CASE("Trie: insere e imprime"){
 
 TEST_CASE("Trie: pesquisa"){
     Trie T;
-    T.Insere('A',"..-.");
-    T.Insere('B',"-...");
-    T.Insere('C',"-.-.");
-    T.Insere('D',"-");
-    T.Insere('E',".");
-    T.Insere('F',".-");
-    T.Insere('G',"--");
+    T.Insere("A","..-.");
+    T.Insere("B","-...");
+    T.Insere("C","-.-.");
+    T.Insere("D","-");
+    T.Insere("E",".");
+    T.Insere("F",".-");
+    T.Insere("G","--");
     // T.Imprime();
 
-    char res1;
+    std::string res1;
     CHECK(T.Pesquisa(res1, "..-.") == true);
-    CHECK(res1 == 'A');
+    CHECK(res1 == "A");
     CHECK(T.Pesquisa(res1, "-") == true);
-    CHECK(res1 == 'D');
+    CHECK(res1 == "D");
     CHECK(T.Pesquisa(res1, ".") == true);
-    CHECK(res1 == 'E');
+    CHECK(res1 == "E");
     CHECK(T.Pesquisa(res1, "-.-.") == true);
-    CHECK(res1 == 'C');
+    CHECK(res1 == "C");
     CHECK(T.Pesquisa(res1, "..") == false);
-    CHECK(res1 == 'C');
+    CHECK(res1 == "C");
 }
 
 

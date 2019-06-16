@@ -10,7 +10,7 @@
 
 struct node_t{
     node_t* filhos[ALFABETO];
-    char symbol;
+    std::string symbol;
     bool folha;
 
     node_t();
@@ -24,10 +24,10 @@ public:
     Trie(const Trie& outro);
     ~Trie();
 
-    void Insere(char registro, std::string chave);
+    void Insere(std::string registro, std::string chave);
     void pre_ordem(node_t* raiz, std::string subchave);
     void Imprime();
-    bool Pesquisa(char& result, std::string chave);
+    bool Pesquisa(std::string& result, std::string chave);
 
 private:
     node_t* raiz;
