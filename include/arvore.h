@@ -2,9 +2,11 @@
 #define ARVORE_H
 
 #define ALFABETO 2
+#define CHAR_INICIAL 46
 
 #include <string>
 #include <iostream>
+#include <cstdlib>
 
 struct node_t{
     node_t* filhos[ALFABETO];
@@ -25,7 +27,7 @@ public:
     void Insere(char registro, std::string chave);
     void pre_ordem(node_t* raiz, std::string subchave);
     void Imprime();
-    bool Pesquisa(std::string& result, std::string chave);
+    bool Pesquisa(char& result, std::string chave);
 
 private:
     node_t* raiz;

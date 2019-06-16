@@ -46,6 +46,8 @@ TEST_CASE("Trie: insere e imprime"){
     T.Insere('E',".");
     T.Insere('F',".-");
     T.Insere('G',"--");
+    T.Insere('U',"..");
+    T.Insere('M',"-.");
 
     std::stringstream ss;
     //change the underlying buffer and save the old buffer
@@ -54,10 +56,31 @@ TEST_CASE("Trie: insere e imprime"){
     T.Imprime();
 
     std::cout.rdbuf(old_buf); //reset
-    CHECK(ss.str() == "D -\nG --\nE .\nF .-\n");
+    CHECK(ss.str() == "E .\nU ..\nF .-\nD -\nM -.\nG --\n");    
+}
 
+TEST_CASE("Trie: pesquisa"){
+    Trie T;
+    T.Insere('A',"..-.");
+    T.Insere('B',"-...");
+    T.Insere('C',"-.-.");
+    T.Insere('D',"-");
+    T.Insere('E',".");
+    T.Insere('F',".-");
+    T.Insere('G',"--");
+    // T.Imprime();
 
-    
+    char res1;
+    CHECK(T.Pesquisa(res1, "..-.") == true);
+    CHECK(res1 == 'A');
+    CHECK(T.Pesquisa(res1, "-") == true);
+    CHECK(res1 == 'D');
+    CHECK(T.Pesquisa(res1, ".") == true);
+    CHECK(res1 == 'E');
+    CHECK(T.Pesquisa(res1, "-.-.") == true);
+    CHECK(res1 == 'C');
+    CHECK(T.Pesquisa(res1, "..") == false);
+    CHECK(res1 == 'C');
 }
 
 

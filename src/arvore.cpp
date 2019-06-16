@@ -37,8 +37,8 @@ Trie::~Trie(){
 
 void Trie::Insere(char registro, std::string chave){
     node_t* atual = raiz;
-    for (int i = 0; i < chave.length(); i++){
-        int idx = chave[i] - '-';
+    for (int i = 0; i < (int)chave.length(); i++){
+        int idx = abs(chave[i] - CHAR_INICIAL);
         if(!atual->filhos[idx]){ /* Checa se a chave com essa terminação existe */
             /* Não existe essa chave temos que criá-la */
             atual->filhos[idx] = new node_t();
@@ -54,7 +54,8 @@ void Trie::pre_ordem(node_t* node, std::string subchave){
             std::cout << node->symbol << " " << subchave << std::endl;
         for (int i = 0; i < ALFABETO; i++){
             std::string subchave2 = subchave;
-            subchave2 += (char)(i+'-');
+            int idx = (-1)*i + CHAR_INICIAL;
+            subchave2 += (char)(idx);
             pre_ordem(node->filhos[i], subchave2);
         }
     }
@@ -62,4 +63,21 @@ void Trie::pre_ordem(node_t* node, std::string subchave){
 void Trie::Imprime(){
     pre_ordem(raiz, "");
 }
-bool Trie::Pesquisa(std::string& result, std::string chave){}
+
+/* Retorna True se encontrar a chave 'chave', False do contrário;
+   Coloca o caractere equivalente à chave 'chave' encontrada em 'result'*/
+bool Trie::Pesquisa(char& result, std::string chave){
+    node_t* atual = raiz;
+    for (int i = 0; i < (int)chave.length(); i++){
+        int idx = abs(chave[i] - CHAR_INICIAL);
+        atual = atual->filhos[idx];
+    }
+    if (atual->folha){
+        /* Chegamos numa folha = código válido */
+        result = atual->symbol;
+        return true;
+    }
+    
+    /* Não chegamos numa folha, código não existe/inválido */
+    return false;
+}
