@@ -38,7 +38,7 @@ Trie::~Trie(){
 void Trie::Insere(std::string registro, std::string chave){
     node_t* atual = raiz;
     for (int i = 0; i < (int)chave.length(); i++){
-        int idx = abs(chave[i] - CHAR_INICIAL);
+        int idx = CHAR_FINAL - chave[i];
         if(!atual->filhos[idx]){ /* Checa se a chave com essa terminação existe */
             /* Não existe essa chave temos que criá-la */
             atual->filhos[idx] = new node_t();
@@ -54,7 +54,7 @@ void Trie::pre_ordem(node_t* node, std::string subchave){
             std::cout << node->symbol << " " << subchave << std::endl;
         for (int i = 0; i < ALFABETO; i++){
             std::string subchave2 = subchave;
-            int idx = (-1)*i + CHAR_INICIAL;
+            int idx = CHAR_FINAL - i;
             subchave2 += (char)(idx);
             pre_ordem(node->filhos[i], subchave2);
         }
@@ -69,7 +69,10 @@ void Trie::Imprime(){
 bool Trie::Pesquisa(std::string& result, std::string chave){
     node_t* atual = raiz;
     for (int i = 0; i < (int)chave.length(); i++){
-        int idx = abs(chave[i] - CHAR_INICIAL);
+        int idx = CHAR_FINAL - chave[i];
+        if (!atual){
+            return false; /* Chegamos num ramo que nao existe: pesquisa falhou */
+        }
         atual = atual->filhos[idx];
     }
     if (atual->folha){

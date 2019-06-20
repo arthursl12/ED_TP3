@@ -79,7 +79,7 @@ TEST_CASE("Trie: pesquisa"){
     CHECK(res1 == "E");
     CHECK(T.Pesquisa(res1, "-.-.") == true);
     CHECK(res1 == "C");
-    CHECK(T.Pesquisa(res1, "..") == false);
+    CHECK(T.Pesquisa(res1, "....") == false);
     CHECK(res1 == "C");
 }
 

@@ -2,7 +2,7 @@
 #define ARVORE_H
 
 #define ALFABETO 2
-#define CHAR_INICIAL 46
+#define CHAR_FINAL 46
 
 #include <string>
 #include <iostream>
