@@ -32,6 +32,7 @@ void carrega_Trie(Trie& codigo_morse){
 
         codigo_morse.Insere(character, code);
     }
+    morse.close();
 }
 
 /* Recebe uma string 'codigo' em código morse e decodifica ela para o alfabeto, retornando o caractere correspondente  */
