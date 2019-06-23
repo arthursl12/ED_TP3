@@ -8,12 +8,12 @@ bool str_tok(std::string& str, std::string delimiter, std::string& token){
     token = str.substr(0, idx);
 
     if (idx == std::string::npos){
-        /* Não achou o token: não faz nada e coloca a string original no token*/
+        /* Não achou o delimitador: não faz nada e coloca a string original no token*/
         token = str;
         return false;
     }
     str.erase(0, idx+1); /* Remove o token e o delimitador da string original */
-    return true;;
+    return true;
 }
 
 void carrega_Trie(Trie& codigo_morse){
