@@ -13,7 +13,7 @@ bool str_tok(std::string& str, std::string delimiter, std::string& token){
         return false;
     }
     str.erase(0, idx+1); /* Remove o token e o delimitador da string original */
-    return true;;
+    return true;
 }
 
 void carrega_Trie(Trie& codigo_morse){
